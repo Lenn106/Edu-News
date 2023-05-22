@@ -1,183 +1,402 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="site.webmanifest">
-  <title>Neo-Menu</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap">
-  <style>
-    /* New styles for menu */
-    .menu {
-      background-color: rgba(0, 0, 0, 0.7);
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 80px; /* increased height to fix blank spots */
-      display: flex;
-      justify-content: center;
-      align-items: center; /* centered menu items vertically */
-      z-index: 2;
-      font-family: 'Nunito', sans-serif;
-    }
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edu News</title>
+    <style>
+        /* Base CSS styles for the website */
+        body {
+            background-color: #232323;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            font-family: "Times New Roman", Times, serif;
+        }
 
-    .menu a {
-      color: white;
-      font-size: 18px;
-      text-decoration: none;
-      padding: 10px;
-    }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
 
-    .menu a:hover {
-      background-color: rgba(255, 255, 255, 0.2);
-    }
+        .menu {
+            background-color: #333333;
+            padding: 10px;
+            text-align: center;
+        }
 
-    .container {
-      max-width: 100%;
-      margin: 0 auto;
-      padding: 190px;
-      text-align: center;
-      box-sizing: border-box;
-      font-family: 'Nunito', sans-serif;
-    }
+        .menu-title {
+            color: #ffffff;
+            font-size: 32px;
+            margin: 0;
+        }
 
-    .container img {
-      max-width: 80px;
-      height: auto;
-    }
+        .article-list {
+            margin-top: 20px;
+        }
 
-    .logo {
-      max-width: 100px;
-      height: auto;
-      margin-bottom: 20px;
-    }
+        .article {
+            margin-bottom: 30px;
+        }
 
-    h1 {
-      font-size: 36px;
-      font-weight: 700;
-      margin-top: 0;
-      margin-bottom: 20px;
-      font-family: 'Nunito', sans-serif;
-      color: white;
-    }
+        .article-title {
+            font-size: 24px;
+            color: #ffffff;
+            background-color: transparent;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            outline: none;
+            text-decoration: none;
+            display: block;
+            width: 100%;
+            text-align: left;
+            margin-bottom: 5px;
+        }
 
-    p {
-      font-size: 24px;
-      font-weight: 400;
-      margin-top: 20px;
-      color: white;
-      font-family: 'Nunito', sans-serif;
-    }
+        .article-title:hover {
+            text-decoration: underline;
+        }
 
-    .download-link {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 40px;
-      padding: 5px;
-      background-color: #007bff;
-      color: #fff;
-      border-radius: 5px;
-      text-decoration: none;
-      font-family: 'Nunito', sans-serif;
-      cursor: pointer; /* added cursor pointer to download link */
-      position: relative; /* added position: relative to download button */
-    }
+        .article-separator {
+            border-top: 1px solid #ffffff;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
 
-    .download-link img {
-      margin-right: 10px;
-      height: 50px; /* changed height of download button logo */
-      width: auto;
-    }
+        .article-content {
+            display: none;
+            margin-top: 10px;
+            color: #ffffff;
+            background-color: #333333;
+            padding: 10px;
+        }
 
-    span {
-      font-size: 24px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
+        .about-blank {
+            color: #ffffff;
+            text-decoration: none;
+        }
+        
+        .footer {
+            background-color: #1a1a1a;
+            padding: 10px;
+            text-align: center;
+            font-size: 12px;
+        }
+    </style>
+    <script>
+        /* JavaScript function to open new tab with custom styles */
+        function openInNewTab(url) {
+            const win = window.open("about:blank");
+            const content = `
+          <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unblocked Games</title>
+    <style>
+        /* Custom CSS styles for the website */
+        body {
+            background-color: #355d68;
+            font-family: 'Courier New', Courier, monospace;
+            color: #ffc27a;
+            margin: 0;
+            padding: 0;
+        }
 
-    .discord-logo {
-      max-width: 80px;
-      height: auto;
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      cursor: pointer;
-    }
+        .container {
+            margin-left: 10%;
+            margin-right: 10%;
+        }
 
-    .rainbow-logo:hover,
-    .download-link:hover img {
-      animation: rainbow 1s linear infinite;
-    }
+        .game-list {
+            margin-top: 20px;
+        }
 
-    body {
-      background-image: url('https://giffiles.alphacoders.com/211/211236.gif');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      margin: 0; /* removed default margin */
-      font-family: 'Nunito', sans-serif;
-    }
+        .game {
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ccc;
+        }
 
-    /* Added styles for menu placeholders */
-    @media only screen and (max-width: 768px) {
-      .menu {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        display: flex;
-        justify-content: space-around;
-        padding: 5px;
-        background-color: rgba(0, 0, 0, 0.7);
-        font-family: 'Nunito', sans-serif;
-        height: 60px; /* adjusted height for smaller screens */
-      }
-    }
+        .game-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ffeb99;
+        }
 
-    /* Added rainbow effect to logo on hover */
-    @keyframes rainbow {
-      0% { filter: hue-rotate(0deg); }
-      100% { filter: hue-rotate(360deg); }
-    }
-  </style>
-  <script>
-    // Add event listener to download button
-    document.addEventListener('DOMContentLoaded', function() {
-      const downloadBtn = document.querySelector('.download-link');
+        .game-content {
+            margin-top: 10px;
+            color: #ffeb99;
+        }
 
-      downloadBtn.addEventListener('click', function() {
-        window.open('https://lenn106.github.io/NeoMenu-Downloads/', '_blank'); // open link in new tab
-      });
-    });
+        table {
+            word-break: break-word;
+        }
 
-    // Add audio playing on page load
-    window.onload = function() {
-      const audio = new Audio('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3');
-      audio.play();
-    };
-  </script>
+        .pointer {
+            white-space: nowrap;
+        }
+
+        a {
+            all: unset;
+            color: #ffeb99;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .content {
+            width: 32%;
+            margin: auto;
+            display: inline-flex;
+        }
+
+        .tableSpacing {
+            height: 21px;
+        }
+
+        .cloak-button {
+            background-color: #ffeb99;
+            color: #355d68;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+
+        .credits-button {
+            background-color: #ffeb99;
+            color: #355d68;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+
+        .credits-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #355d68;
+            z-index: 1;
+        }
+
+        .credits-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60%;
+            height: 60%;
+            padding: 20px;
+            border: 1px solid #ffc27a;
+            background-color: rgba(0, 0, 0, 0.5);
+            overflow: auto;
+        }
+
+        .back-button {
+            background-color: #ffeb99;
+            color: #355d68;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+
+        .credits-text {
+            font-size: 16px;
+            line-height: 1.5;
+            color: #ffeb99;
+        }
+
+        .bio-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #355d68;
+            z-index: 1;
+        }
+
+        .bio-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60%;
+            height: 60%;
+            padding: 20px;
+            border: 1px solid #ffc27a;
+            background-color: rgba(0, 0, 0, 0.5);
+            overflow: auto;
+        }
+
+        .bio-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ffeb99;
+        }
+
+        .bio-text {
+            font-size: 16px;
+            line-height: 1.5;
+            color: #ffeb99;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
-  <a href="https://discord.com/invite/PDRTFTHQnA" target="_blank">
-    <img class="discord-logo rainbow-logo" src="https://tinypic.host/images/2023/05/06/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png" alt="Discord Logo" border="0" />
-  </a>
-  <div class="menu">
-    <a href="https://www.youtube.com/watch?v=deFT3gpXfAk&ab_channel=Lenn106" target="_blank">Tutorial</a> 
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSf6WDRaGap9UZkQiuQz3bUdKhlpyowvHIDEyrGjaqbq2KTs8w/viewform" target="_blank">Join Our Staff</a>
-    <a href="https://github.com/Lenn106" target="_blank">My GitHub</a> 
-  </div>
-  <div class="container">
-    <img class="logo" src="https://tinypic.host/images/2023/05/11/Untitled-removebg-preview.png" alt="Logo" border="0" />
-    <h1>Neo-Menu</h1>
-    <p>Neo eliminates the stress and agony that comes with i-Ready. </p>
-    <a href="#" class="download-link">
-      <img src="https://tinypic.host/images/2023/05/11/Untitled-removebg-preview.png" alt="Download Icon" />
-      <span>Download Now</span>
-    </a>
-  </div>
+    <div class="container">
+        <h1>Unblocked Games</h1>
+
+        <div class="game-list">
+            <div class="game">
+                <h2 class="game-title">1v1.lol</h2>
+                <div class="game-content">
+                    <p>1v1.lol is a multiplayer online building and shooting game where you can show off your building skills and compete against other players.</p>
+                    <p><a href="https://1v1.lol" target="_blank">Click here to play 1v1.lol now!</a></p>
+                </div>
+            </div>
+
+            <div class="game">
+                <h2 class="game-title">Subway Surfers</h2>
+                <div class="game-content">
+                    <p>Subway Surfers is an endless runner game in which the main character tries to escape from a grumpy inspector and his dog. Run, jump, and dodge the oncoming trains!</p>
+                    <p><a href="https://subwaysurfersgame.co" target="_blank">Click here to play Subway Surfers now!</a></p>
+                </div>
+            </div>
+
+            <!-- Add more games as needed -->
+        </div>
+
+        <button class="cloak-button" onclick="cloakTab()">Cloak Tab</button>
+        <button class="credits-button" onclick="toggleCredits()">Credits</button>
+
+        <div class="credits-container" id="creditsContainer">
+            <div class="credits-content">
+                <h1>Credits</h1>
+                <div class="credits-text">
+                    <p>This website was created by:</p>
+                    <ul>
+                        <li><a href="javascript:void(0);" onclick="showBio('John Doe')">Lenn106</a></li>
+                        <li><a href="javascript:void(0);" onclick="showBio('Jane Smith')">nigbeater29</a></li>
+                        <li><a href="javascript:void(0);" onclick="showBio('David Johnson')">FoxMoss</a></li>
+                        <!-- Add more names as needed -->
+                    </ul>
+                </div>
+                <button class="back-button" onclick="toggleCredits()">Back</button>
+            </div>
+        </div>
+
+        <div class="bio-container" id="bioContainer">
+            <div class="bio-content">
+                <h1 id="bioTitle"></h1>
+                <div class="bio-text" id="bioText"></div>
+                <button class="back-button" onclick="toggleBio()">Back</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+            `;
+            win.document.open();
+            win.document.write(content);
+            win.document.close();
+        }
+
+        /* JavaScript function to show/hide article content */
+        function toggleContent(articleId) {
+            const articleContent = document.getElementById(articleId);
+            articleContent.style.display = articleContent.style.display === "none" ? "block" : "none";
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="menu">
+            <h1 class="menu-title">Edu News</h1>
+        </div>
+
+        <div class="article-list">
+            <!-- Article 1 -->
+            <div class="article">
+                <button class="article-title" onclick="toggleContent('article1')">Malnutritioned Pets in China</button>
+                <div class="article-content" id="article1">
+                    <!-- Paste your article content here -->
+                    <p>
+China, a nation renowned for its rich culture and history, is facing a heartbreaking crisis that has remained largely hidden from the public eye. Behind closed doors, countless cats and dogs endure unimaginable suffering due to a lack of proper care and attention.
+
+Cats and dogs in China often find themselves without suitable shelter, exposed to extreme weather conditions and harsh environments. Many are forced to roam the streets, vulnerable to accidents, diseases, and abuse. The absence of proper animal shelters exacerbates this issue, leaving these creatures without a safe haven.
+
+A significant number of cats and dogs across China suffer from malnutrition and hunger. With limited resources and awareness about proper animal nutrition, owners frequently fail to provide their pets with a balanced diet.</p>
+                    <p>This leads to various health <a class="about-blank" href="javascript:void(0)" onclick="openInNewTab('https://example.com')">problems</a>, weakened immune systems, and a shortened lifespan. To make matters worse, the Chinese only prioritize national resources, military development and infrastructure. It is likely that animal welfare, including that of cats and dogs, is not a primary concern for the Chinese government. Access to adequate veterinary care is a crucial aspect of responsible pet ownership. However, for countless cats and dogs in China, medical attention is a luxury they cannot afford.</p>
+                </div>
+            </div>
+            <div class="article-separator"></div>
+
+            <!-- Article 2 -->
+            <div class="article">
+                <button class="article-title" onclick="toggleContent('article2')">Will Solar Panels Replace Batteries?</button>
+                <div class="article-content" id="article2">
+                    <!-- Paste your article content here -->
+                    <p>In recent years, solar energy has emerged as a promising alternative to traditional fossil fuel-based power generation. With its abundance, sustainability, and potential to reduce greenhouse gas emissions, solar power has captured the attention of governments, businesses, and individuals worldwide. However, this essay aims to shed light on the recent challenges faced by solar energy, exploring the factors that have led to occasional setbacks in its widespread adoption. One of the primary challenges for solar energy is its dependence on sunlight. 
+                    
+                   
+                 
+                    <p>
+                    Solar panels require consistent sunlight exposure to generate electricity efficiently. Unfortunately, weather patterns, including cloud cover, storms, and seasonal variations, can hinder solar energy production. During extended periods of inclement weather, solar power generation may experience significant fluctuations, affecting its reliability as a constant energy source.  Unlike traditional power plants, solar energy relies on photovoltaic cells to convert sunlight into electricity. This intermittent nature poses challenges in meeting the energy demands during peak periods, such as mornings and evenings when the sun's intensity is lower. Additionally, solar power generation cannot operate during nighttime, necessitating the use of energy storage systems or backup sources to maintain a consistent power supply. </p>
+                    While solar energy costs have decreased significantly over the years, initial setup costs remain substantial. Solar panels, inverters, mounting systems, and related infrastructure require significant investments. For some communities or individuals, these costs can pose barriers to entry, hindering the widespread adoption of solar energy. Additionally, the need for suitable land or rooftop spaces, along with complex permitting processes, can further impede the installation of solar systems.</p>
+                </div>
+            </div>
+            <div class="article-separator"></div>
+
+            <!-- Article 3 -->
+            <div class="article">
+                <button class="article-title" onclick="toggleContent('article3')">Biloxi Edgewater Mall Attempted Shooting</button>
+                <div class="article-content" id="article3">
+                    <!-- Paste your article content here -->
+                    <p>In Biloxi, Mississippi, the peaceful atmosphere of Edgewater Mall was shattered by a disturbing incident that unfolded unexpectedly. During an ordinary day of shopping, an individual armed with a firearm attempted to carry out a violent act, throwing the community into turmoil. Panic and chaos erupted as shoppers and employees sought safety amidst the unfolding threat. Thankfully, swift intervention from law enforcement prevented further harm and ensured the security of those present. The repercussions of the attempted shooting reverberated throughout the tight-knit community of Biloxi.</p><p>The sense of shock and disbelief was palpable as residents grappled with the realization that such an act of violence could occur in their own neighborhood. Fear and uncertainty gripped the hearts of parents, while a general feeling of vulnerability lingered in the air.</p>
+                    <p>Ultimately, the attempted shooting at Edgewater Mall was a poignant reminder of the fragility of peace and security. It prompted Biloxi, along with the broader society, to reflect on the imperative of cultivating safe spaces and addressing the complex issues underlying such acts of violence. It reinforced the notion that peace is not a passive state but a collective responsibility, requiring ongoing efforts to ensure the safety and well-being of all.</p>
+                </div>
+            </div>
+            <div class="article-separator"></div>
+
+            <!-- Article 4 -->
+            <div class="article">
+                <button class="article-title" onclick="toggleContent('article4')">The Launch Of Edu News</button>
+                <div class="article-content" id="article4">
+                    <!-- Paste your article content here -->
+                    <p>Edu News, a low-valued $10 million company, has emerged as a game-changer in the world of news consumption. Founded by CEO John Turner, in collaboration with a former BBC news employee, Edu News offers a refreshing alternative to traditional news platforms. With a simple, user-friendly website designed in dark mode, Edu News provides well-written articles that deliver brief yet insightful summaries of events, making it an invaluable resource for research. </p>
+                    <p>Unlike traditional news outlets that often feature lengthy articles filled with unnecessary information, Edu News takes a different approach. By focusing on the essentials, the company ensures that readers can quickly grasp the key points of a news story without wading through extraneous details. This concise format saves readers valuable time and allows them to stay informed efficiently. Edu News stands out as an excellent resource for researchers and students. Its commitment to providing well-written, informative articles ensures that readers can rely on the content for their research needs. By focusing on the essential aspects of a news story, Edu News empowers researchers to gather necessary information swiftly, without the burden of sifting through lengthy articles for relevant details.</p>
+                </div>
+            </div>
+            <div class="article-separator"></div>
+
+            <!-- Add more articles as needed -->
+        </div>
+        
+        <div class="footer">
+            &copy; 2023 Edu News. All rights reserved.
+        </div>
+    </div>
 </body>
 </html>
